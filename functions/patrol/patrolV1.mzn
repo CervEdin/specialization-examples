@@ -1,7 +1,7 @@
 enum SOLDIER;
 enum SHIFT = { OFF, EVE, NIGHT };
 
-int: nDays; 
+int: nDays;
 set of int: DAY = 1..nDays;
 
 int: o;

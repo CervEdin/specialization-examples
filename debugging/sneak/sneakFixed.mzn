@@ -4,11 +4,11 @@ set of int: POST = 1..4;
 array[PATH] of int: time;
 array[POST] of int: guard;
 
-var 0..2: weather; 
+var 0..2: weather;
   % 0 = storm, 1 = rain, 2 = sun
 var PATH: path;
 
-var int: t = time[path] div weather +   
+var int: t = time[path] div weather +
              extra * weather;
 var int: extra;
 constraint path in POST -> extra = guard[path];

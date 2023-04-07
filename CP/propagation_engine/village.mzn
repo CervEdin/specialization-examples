@@ -7,7 +7,7 @@ var {Earth, Mountain, Water, Wind, Thunder, Fire, Marsh, Heaven}: Hare;
 var {Earth, Mountain, Water, Wind, Fire, Marsh, Heaven}: Fox;
 var {Earth, Mountain, Water, Wind, Thunder, Fire, Marsh, Heaven}: Tiger;
 var {Earth, Water, Wind, Thunder, Marsh, Heaven}: Leopard;
-     
+
 
 var {Earth, Mountain, Water, Fire, Marsh, Heaven}: WildDog ;
 var {Earth, Mountain, Water, Wind, Thunder, Fire, Marsh, Heaven}: Sheep;
@@ -16,16 +16,16 @@ var {Earth, Mountain, Water, Wind, Thunder, Fire, Marsh, Heaven}: Horse;
 var {Mountain, Thunder, Fire, Marsh, Heaven}: Deer;
 var {Earth, Mountain, Water, Wind, Fire, Marsh, Heaven}: Snake;
 var {Earth, Thunder, Fire, Marsh, Heaven}: EarthWorm;
-   
+
 
 var {Earth, Mountain, Wind, Thunder, Fire, Marsh, Heaven}: Wolf;
 var {Mountain, Water, Thunder, Fire, Marsh, Heaven}: Dog;
 var {Earth, Mountain, Water, Wind, Thunder, Marsh}: Pheasant;
 var {Earth, Mountain, Heaven}: Chicken;
-var {Earth, Mountain, Water}: Bird; 
-var {Earth, Mountain, Wind, Fire, Marsh, Heaven}: Monkey;  
+var {Earth, Mountain, Water}: Bird;
+var {Earth, Mountain, Wind, Fire, Marsh, Heaven}: Monkey;
 var {Earth, Mountain, Water, Wind, Thunder, Marsh, Heaven}: Ape;
-    
+
 
 var {Mountain, Wind, Thunder, Fire, Marsh, Heaven}: ChineseUnicorn;
 var {Earth, Water, Wind, Thunder, Fire, Marsh, Heaven}: Cow;

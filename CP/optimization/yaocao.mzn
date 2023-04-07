@@ -10,9 +10,9 @@ array[POTIONS,SEGMENTS] of int: nutrient;   % nutrient required
 array[POTIONS,SEGMENTS] of int: leave; % num of leaves to grow
 
 array[POTIONS] of var SEGMENTS: choice; %Choice of segment for each potion
-array[POTIONS] of var int: nutrient_list = 
+array[POTIONS] of var int: nutrient_list =
     [nutrient[i,choice[i]] | i in POTIONS];
-array[POTIONS] of var int: leave_list = 
+array[POTIONS] of var int: leave_list =
     [leave[i,choice[i]] | i in POTIONS];
 
 var int: total_nutrient = sum(nutrient_list);

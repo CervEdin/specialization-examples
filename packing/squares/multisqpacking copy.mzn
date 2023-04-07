@@ -15,7 +15,7 @@ array[NSQ] of var 0..maxl: y;
 array[NSQ] of var SQUARE: size;
 constraint forall(i in NSQ)(exists(j in 0..n-1)
    (let {int: sumtoj = sum(k in 1..j)(ncopy[k+1])}
-      in sumtoj < i /\ i <= sumtoj + ncopy[j+2] 
+      in sumtoj < i /\ i <= sumtoj + ncopy[j+2]
          /\ size[i] = j+1));
 
 % squares fit in the rectangle
@@ -25,8 +25,8 @@ constraint forall(s in NSQ)(y[s] + size[s] <= height);
 % non overlap
 %constraint forall(s1, s2 in NSQ where s1 < s2)
 %                 (x[s1] + size[s1] <= x[s2] \/
-%                  x[s2] + size[s2] <= x[s1] \/  
-%                  y[s1] + size[s1] <= y[s2] \/ 
+%                  x[s2] + size[s2] <= x[s1] \/
+%                  y[s1] + size[s1] <= y[s2] \/
 %                  y[s2] + size[s2] <= y[s1]);
 
 % non overlap with global diffn
@@ -42,15 +42,15 @@ constraint cumulative(y,size,size,width);
 include "lex_greater.mzn";
 constraint forall(i in SQUARE)
    (forall(j in 1..ncopy[i+1]-1)(
-      let {int: base = sum(k in 0..i-1)(ncopy[k+1])} 
+      let {int: base = sum(k in 0..i-1)(ncopy[k+1])}
          in lex_greater([x[base+j],y[base+j]],[x[base+j+1],y[base+j+1]])));
 
 % variables ordered in reverse size x[n], y[n], x[n-1], y[n-1], ..., x[1], y[1]
-%array[1..2*n] of var 0..maxl: vs = [ if i mod 2 = 0 then x[n+1 - i div 2] 
+%array[1..2*n] of var 0..maxl: vs = [ if i mod 2 = 0 then x[n+1 - i div 2]
 %                                     else y[n+1 - i div 2] endif | i in 2..2*n+1 ];
 
 %solve :: seq_search([
-%         int_search([area,height,width], input_order, indomain_min, complete) 
+%         int_search([area,height,width], input_order, indomain_min, complete)
          %,int_search(vs, input_order, indomain_min, complete)
 %         ])
 solve

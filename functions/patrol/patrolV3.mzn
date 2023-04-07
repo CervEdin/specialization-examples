@@ -22,5 +22,5 @@ constraint forall (d in DAY) (global_cardinality([roster[s,d] | s in SOLDIER], [
 solve maximize sum(onEve);
 
 
-output ["Soldier \(s) on Day \(d) takes the \(roster[s,d]) shift\n" 
+output ["Soldier \(s) on Day \(d) takes the \(roster[s,d]) shift\n"
         ++ if s == max(SOLDIER) then "\(onEve[d])\n" else "" endif | d in DAY, s in SOLDIER]++[show(sum(onEve))];

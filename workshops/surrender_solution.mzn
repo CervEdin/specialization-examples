@@ -1,7 +1,7 @@
 % workshop 2
 % select a set of trade negotiation party
 enum NEGOTIATOR;
-NEGOTIATOR: dummy; 
+NEGOTIATOR: dummy;
 
 int: l; % minimum party size
 int: u; % maximum party size
@@ -25,7 +25,7 @@ var int: obj;
 constraint obj =  (min(j in 1..u)((party[j] = dummy)*max(honor) + honor[party[j]]));
 
 output ["party = "] ++
-       ["{"] ++ [ if fix(party[j]) != dummy then 
-                     show(party[j]) ++ if j == u \/ fix(party[j+1]) = dummy then "" else ", " endif 
+       ["{"] ++ [ if fix(party[j]) != dummy then
+                     show(party[j]) ++ if j == u \/ fix(party[j+1]) = dummy then "" else ", " endif
                   else "" endif | j in 1..u ] ++ ["};\n"] ++
        ["obj = \(obj);\n"];

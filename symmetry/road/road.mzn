@@ -9,7 +9,7 @@ constraint alldifferent(road);
 
 constraint road[1] < road[n];
 
-var int: scoop = sum(i in 1..n-1) 
+var int: scoop = sum(i in 1..n-1)
    (coop[road[i], road[i+1]]);
 solve maximize scoop;
 

@@ -39,7 +39,7 @@ constraint obj1 = sum(t in TABLE)(card(table[t]) != 0);
 
 var int: obj2;
 constraint obj2 = sum(t in TABLE)
-   (let {var int: minRep = min([reputation[p]*(p in table[t]) +  maxreputation*(1-(p in table[t])) | p in SCHOLAR]); 
+   (let {var int: minRep = min([reputation[p]*(p in table[t]) +  maxreputation*(1-(p in table[t])) | p in SCHOLAR]);
          var int: maxRep = max([reputation[p]*(p in table[t]) | p in SCHOLAR]); } in
     if minRep = maxreputation then 0 else maxRep - minRep endif);
 

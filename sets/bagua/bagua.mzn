@@ -3,7 +3,7 @@ int: nSpots;
 set of int: SPOT = 1..nSpots;
 array[SPOT] of int: damage;
 
-enum SYMB;   
+enum SYMB;
 array[SYMB] of set of SPOT: group;
 
 var set of SPOT: attacks; % decision variable (set variable)

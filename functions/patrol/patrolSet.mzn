@@ -25,7 +25,7 @@ constraint forall(d in DAY)(roster[EVE,d] intersect roster[NIGHT,d] = {});
 
 % temporal implications
 constraint forall (d in 1..(nDays-1), s in SOLDIER) ((s in roster[EVE, d]) -> (not(s in roster[NIGHT, d+1])));
-constraint forall (d in 1..(nDays-2), s in SOLDIER) 
+constraint forall (d in 1..(nDays-2), s in SOLDIER)
    ((s in roster[NIGHT, d]) /\ (s in roster[NIGHT, d+1]) -> (not(s in roster[NIGHT, d+2])));
 
 var int: tOnEve = sum(d in DAY)(card(roster[EVE,d]));

@@ -3,7 +3,7 @@
 enum SOLDIER;
 enum SHIFT = { OFF, EVE, NIGHT };
 
-int: nDays; % length of the period 
+int: nDays; % length of the period
 set of int: DAY = 1..nDays;
 
 int: o;
@@ -21,6 +21,6 @@ constraint onEve = [sum (s in SOLDIER) (roster[s,d]=EVE) | d in DAY];
 
 solve maximize sum(onEve);
 
-output ["Soldier \(s) on Day \(d) takes the \(roster[s,d]) shift\n" 
+output ["Soldier \(s) on Day \(d) takes the \(roster[s,d]) shift\n"
         ++ if s == max(SOLDIER) then "\(onEve[d])\n" else "" endif | d in DAY, s in SOLDIER]
         ++[show(sum(onEve))];

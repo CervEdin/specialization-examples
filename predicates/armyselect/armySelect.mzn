@@ -7,7 +7,7 @@ set of ELITE: infantry;
 array[ELITE] of int: liuValue;
 array[ELITE] of int: guanValue;
 array[ELITE] of int: zhangValue;
- 
+
 var set of ELITE: Liu;
 var set of ELITE: Guan;
 var set of ELITE: Zhang;

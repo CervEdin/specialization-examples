@@ -1,4 +1,4 @@
-solve maximize 6*A + 10*B + 8*C + 40*D;  
+solve maximize 6*A + 10*B + 8*C + 40*D;
 
 int: budget = 10000;
 constraint 13*A + 21*B + 17*C + 90*D <= budget;

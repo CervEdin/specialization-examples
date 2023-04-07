@@ -17,7 +17,7 @@ array[NSQ] of var SQUARE: size;
 include "global_cardinality.mzn";
 constraint global_cardinality(size, [i | i in SQUARE], ncopy);
 constraint forall(i in 1..nsq-1)(size[i] <= size[i+1]);
-% calculate size of each square 
+% calculate size of each square
 %array[NSQ] of SQUARE: size = [ max(j in SQUARE)(j*(i > base[j])) | i in NSQ];
 
 % squares fit in the rectangle
@@ -34,8 +34,8 @@ constraint cumulative(x, size, size, height);
 constraint cumulative(y, size, size, width);
 
 % symmetry breaking
-array[SQUARE] of int: base = 
-   [if i = 1 then 0 else sum(j in 1..i-1)(ncopy[j]) endif | 
+array[SQUARE] of int: base =
+   [if i = 1 then 0 else sum(j in 1..i-1)(ncopy[j]) endif |
       i in SQUARE];
 include "lex_greater.mzn";
 constraint forall(i in SQUARE)

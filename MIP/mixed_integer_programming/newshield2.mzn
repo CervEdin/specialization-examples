@@ -15,7 +15,7 @@ constraint 2.0*x + 1.0*y + 1.0*z <= 20.0;
 output["x = \(x)\ny = \(y)\nz = \(z)\nobj = \(3.0*x + 1.0*y + 3.0*z)"];
 
 constraint x <= 7;
-constraint z <= 4; 
+constraint z <= 4;
 
 % x = 7.0
 % y = 1.249999999999998

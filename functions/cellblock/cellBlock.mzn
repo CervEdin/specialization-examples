@@ -27,9 +27,9 @@ constraint forall (d in danger, p in PRISONER where d != p) ((abs(r[d] - r[p]) +
 var int: tCost = sum (p in PRISONER) (cost[r[p],c[p]]);
 solve minimize tCost;
 
-output["Female: "++show(p)++" in cell["++show(r[p])++","++show(c[p])++"]\n" | 
+output["Female: "++show(p)++" in cell["++show(r[p])++","++show(c[p])++"]\n" |
       p in female]
-  ++ ["\n"]++["Male: "++show(p)++" in cell["++show(r[p])++","++show(c[p])++"]\n" | 
+  ++ ["\n"]++["Male: "++show(p)++" in cell["++show(r[p])++","++show(c[p])++"]\n" |
       p in male]
   ++ ["\nTotal Cost: ",show(tCost)];
 

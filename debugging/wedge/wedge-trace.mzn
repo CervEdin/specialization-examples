@@ -30,6 +30,6 @@ constraint alldifferent(h);
 
 constraint forall(p in POS)(r[p] in compatible[h[p]]);
 
-solve maximize sum(p in POS)(strength[r[p]]); 
+solve maximize sum(p in POS)(strength[r[p]]);
 
 output["h = \(h)\nr = \(r)\n"];

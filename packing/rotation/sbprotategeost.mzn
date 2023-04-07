@@ -27,8 +27,8 @@ array[ROFF,1..2] of int: roff =
 array[BLOCK,1..2] of var int: coord;
 constraint forall(i in BLOCK)
    (coord[i,1] = x[i] /\ coord[i,2] = y[i]);
- 
-% extract the shape orientations into 1-d array 
+
+% extract the shape orientations into 1-d array
 array[1..n*4] of set of int: shapeorient =
    array1d([shape[i,j]| i in BLOCK, j in 1..4]);
 % shape orientations without empty set
@@ -39,7 +39,7 @@ array[int] of set of int: neshapeorient =
 array[BLOCK] of var int: kind;
 array[BLOCK] of int: nemptycount =
    [ sum(j in 1..4*i)(shapeorient[j] != {}) | i in BLOCK];
-array[BLOCK] of set of int: shapeind = 
+array[BLOCK] of set of int: shapeind =
    [ if i = 1 then { j | j in 1..nemptycount[i]}
         else {j | j in nemptycount[i-1]+1..nemptycount[i]}
      endif | i in BLOCK ];

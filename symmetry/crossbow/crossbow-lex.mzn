@@ -1,6 +1,6 @@
 int: n;
 set of int: N = 1..n;
-array[N,N] of var bool: t; 
+array[N,N] of var bool: t;
 constraint sum(i,j in N)(t[i,j]) = n;
 solve satisfy;
 
@@ -54,5 +54,5 @@ constraint let { array[N,N] of var bool: s; } in
 
 
 output [ if fix(t[i,j]) then "T" else "." endif ++
-         if j = n then "\n" else "" endif 
+         if j = n then "\n" else "" endif
        | i,j in N];

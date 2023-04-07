@@ -45,7 +45,7 @@ array[PLASTER] of var 0..maxdim: len = [ [dim[t[p],1], dim[t[p],2], 0][u[p]] | p
 array[PLASTER] of var 0..maxdim: wid = [ [dim[t[p],2], dim[t[p],1], 0][u[p]] | p in PLASTER ];
 
 constraint diffn(x,y,len,wid);
-constraint forall(p in PLASTER)(x[p] + len[p] -1 <= length /\ y[p] + wid[p] -1 <= width); 
+constraint forall(p in PLASTER)(x[p] + len[p] -1 <= length /\ y[p] + wid[p] -1 <= width);
 
 
 % calculate which squares are covered
@@ -57,7 +57,7 @@ constraint forall(p in PLASTER)
                           y[p] <= j /\ y[p]+wid[p] > j) ->
                           (covered[i, j]))));
 constraint forall(i in LENGTH, j in WIDTH)
-                 (covered[i,j] -> 
+                 (covered[i,j] ->
                   exists(p in PLASTER)
                         (x[p] <= i /\ x[p] + len[p] > i /\
                          y[p] <= j /\ y[p] + wid[p] > j));
@@ -69,24 +69,24 @@ var int: cost = sum(t in TYPE)(used[t] * price[t]);
 %constraint used[5] >= 1;
 %constraint used[2] >= 1;
 
-solve 
+solve
 %       satisfy;
 %      :: int_search(reverse(used), input_order, indomain_min, complete)
       minimize cost;
 
 output ["x = \(x);\ny = \(y);\nu = \(u);\ncost = \(cost);\n"]
-%       ++ [ if fix(covered[r,c]) then "#" 
-%            else " " endif 
+%       ++ [ if fix(covered[r,c]) then "#"
+%            else " " endif
 %%            ++ if c = width then "\n" else "" endif
 %          | r in LENGTH, c in WIDTH ]
 %       ++ ["------\n"]
-%       ++ [ if fix(wound[r,c]) then "#" 
-%            else " " endif 
+%       ++ [ if fix(wound[r,c]) then "#"
+%            else " " endif
 %            ++ if c = width then "\n" else "" endif
 %          | r in LENGTH, c in WIDTH ]
 %       ++ ["------\n"]
-       ++ [ if wound[r,c] /\ fix(covered[r,c]) then "#" 
-            elseif fix(covered[r,c]) then "." 
+       ++ [ if wound[r,c] /\ fix(covered[r,c]) then "#"
+            elseif fix(covered[r,c]) then "."
             else " " endif
             ++ if c = width then "\n" else "" endif
           | r in LENGTH, c in WIDTH ]

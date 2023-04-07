@@ -11,7 +11,7 @@ var_sqr_sym(array[int,int] of var int: x) =
                          j in index_set_2of2(x) ];
         array[1..8,1..l] of 1..l:
           p = array2d(1..8,1..l,
-            [ if k == 1 then i*n + j - n 
+            [ if k == 1 then i*n + j - n
               elseif k == 2 then (n - j)*n + i           % r270
               elseif k == 3 then (n - i)*n + (n - j)+1   % r180
               elseif k == 4 then (j*n - n) + (n - i + 1) % r90

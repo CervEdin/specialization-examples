@@ -4,11 +4,11 @@ enum ELEMENTS = {Gold, Wood, Water, Fire, Earth};
 
 array[1..n] of var ELEMENTS: herb;
 
-array[int,1..2] of ELEMENTS: eCompat = 
+array[int,1..2] of ELEMENTS: eCompat =
   [| Water, Wood | Water, Fire | Wood, Fire | Wood, Earth | Earth, Gold  |
      Fire, Earth | Fire, Gold  | Gold, Water| Gold, Wood  | Earth, Water |];
-     
-     
+
+
 include "table.mzn";
 constraint forall(i in 1..(n - 1))(table([herb[i],herb[i+1]], eCompat));
 

@@ -49,7 +49,7 @@ array[PLASTER] of var 0..maxdim: wid = [ [dim[t[p],2], dim[t[p],1], 0][u[p]] | p
 
 constraint diffn(x,y,len,wid);
 
-constraint forall(p in PLASTER)(x[p] + len[p] -1 <= dim[dominated,1] /\ y[p] + wid[p] -1 <= dim[dominated,2]); 
+constraint forall(p in PLASTER)(x[p] + len[p] -1 <= dim[dominated,1] /\ y[p] + wid[p] -1 <= dim[dominated,2]);
 
 var int: cost = sum(t in TYPE)(used[t] * price[t]);
 

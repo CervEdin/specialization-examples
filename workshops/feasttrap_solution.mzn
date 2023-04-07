@@ -1,5 +1,5 @@
 % Beauty Trap
-% Create the most magnificient feast 
+% Create the most magnificient feast
 enum DISH;
 enum TASTE = {spicy, sour, salty, sweet, umame, bland};
 enum TEMP = {hot, cold, warm};
@@ -35,24 +35,24 @@ constraint alldifferent(dish);
 
 include "regular.mzn";
 constraint regular([taste[dish[c]] | c in COURSE], 7, card(TASTE), d, 1, {5});
-array[1..7,TASTE] of 0..7: d = 
+array[1..7,TASTE] of 0..7: d =
      [| 0,0,4,0,0,0
       | 0,0,0,5,0,7
       | 0,0,0,0,6,7
       | 2,3,0,5,6,7
       | 0,3,4,0,0,7
-      | 2,3,4,5,0,7 
+      | 2,3,4,5,0,7
       | 2,3,4,5,6,0 |];
- 
+
 
 
 % a warm dish between any hot dish and later cold dish
 
 % -- Inititial formulation:
 %constraint forall(c in 1..len-1)
-%                 (temp[dish[c]] = hot -> 
+%                 (temp[dish[c]] = hot ->
 %                  forall(c1 in c+1..len)
-%                        (temp[dish[c1]] = cold -> 
+%                        (temp[dish[c1]] = cold ->
 %                         exists(c2 in c+1..c1-1)(temp[dish[c2]] = warm)));
 
 % -- Formulation using regular:
@@ -69,15 +69,15 @@ constraint forall(c in 1..len-1)(temp[dish[i]] = hot -> temp[dish[i+1]] != cold)
 % regular constraint, but is a lot simpler for the solver.
 
 
-% no more than two heavy dishes in a rows 
+% no more than two heavy dishes in a rows
 constraint forall(c in 1..len-2)
                  (heavy[dish[c]] /\ heavy[dish[c+1]] -> not heavy[dish[c+2]]);
 % include "sliding_sum.mzn";
 % constraint sliding_sum([ heavy[dish[c]] | c in COURSE], 0, 2, 3);
 
 
-var int: obj = sum(c in COURSE)(value[dish[c]]) + 
-               (len - 1) + 
+var int: obj = sum(c in COURSE)(value[dish[c]]) +
+               (len - 1) +
                sum(c in 1..len-1)(temp[dish[c]] != temp[dish[c+1]]) +
                sum(c in 1..len-1)(heavy[dish[c]] != heavy[dish[c+1]]);
 

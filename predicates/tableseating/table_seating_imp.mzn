@@ -43,11 +43,11 @@ constraint obj1 = sum(t in TABLE)(card(table[t]) != 0);
 % minimize the difference in reputation in each table
 var int: obj2;
 constraint obj2 = sum(t in TABLE)
-   (let {var int: minRep = min([reputation[p]*(seat[p] = t) +  maxreputation*(seat[p] != t) | p in SCHOLAR]); 
+   (let {var int: minRep = min([reputation[p]*(seat[p] = t) +  maxreputation*(seat[p] != t) | p in SCHOLAR]);
          var int: maxRep = max([reputation[p]*(seat[p] = t) | p in SCHOLAR]); } in
     if minRep = maxreputation then 0 else maxRep - minRep endif);
 
-constraint forall(t in TABLE, p in SCHOLAR)(p in table[t] <-> seat[p] = t);    
+constraint forall(t in TABLE, p in SCHOLAR)(p in table[t] <-> seat[p] = t);
 
 solve minimize (obj1*100 + obj2);
 

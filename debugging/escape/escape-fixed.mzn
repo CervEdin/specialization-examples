@@ -25,6 +25,6 @@ constraint forall(i in STEP)(i >= step -> path[i] = dest);
 constraint forall(i in 1..maxstep-1)
       (table([path[i],path[i+1]],uedge));
 constraint sliding_sum(1,rest,rest,
-            [guard[path[i]] = 0| i in STEP]); 
+            [guard[path[i]] = 0| i in STEP]);
 
 solve minimize sum(i in STEP)(guard[path[i]]);

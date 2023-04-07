@@ -5,7 +5,7 @@ array[PERSON] of bool: on_weekend; % can the person be visited over weekends
 array[PERSON] of int: rank;        % rank of person
 
 array[int,1..2] of PERSON: prec;   % precedences between visits
-set of int: PREC = index_set_1of2(prec); 
+set of int: PREC = index_set_1of2(prec);
 
 0..6: starting_day; % which day of the week is day 0 in the schedule
                     % 0 Monday, 1 Tuesday, ..., 5 Saturday, 6 Sunday
@@ -29,7 +29,7 @@ array[int] of int: weekdur = [ duration[t] | t in PERSON where on_weekend[t] = f
 
 array[int] of TIME: weekends =
 	      if starting_day = 6 then [ 1 ] else [] endif ++
-	      [ t | t in TIME where (t + starting_day) mod 7 = 5 ]; 
+	      [ t | t in TIME where (t + starting_day) mod 7 = 5 ];
 array[int] of int: weekend_dur =
               if starting_day = 6 then [ 1 ] else [] endif ++
 	      [ 2 | t in TIME where (t + starting_day) mod 7 = 5 ];
@@ -47,5 +47,5 @@ solve minimize card(PERSON)*card(PERSON)*end + rank_violation;
 
 %output ["weekends = \(weekends);\n"];
 
-%output [ show(p1) ++ " > " ++ show(p2) ++ "\n"  
+%output [ show(p1) ++ " > " ++ show(p2) ++ "\n"
 %       | p1, p2 in PERSON where rank[p1] > rank[p2] /\ fix(start[p1]) < fix(start[p2]) ];

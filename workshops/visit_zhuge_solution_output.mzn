@@ -5,7 +5,7 @@ array[PERSON] of bool: on_weekend; % can the person be visited over weekends
 array[PERSON] of int: rank;        % rank of person
 
 array[int,1..2] of PERSON: prec;   % precedences between visits
-set of int: PREC = index_set_1of2(prec); 
+set of int: PREC = index_set_1of2(prec);
 
 0..6: starting_day; % which day of the week is day 0 in the schedule
                     % 0 Monday, 1 Tuesday, ..., 5 Saturday, 6 Sunday
@@ -29,7 +29,7 @@ array[int] of int: weekdur = [ duration[t] | t in PERSON where on_weekend[t] = f
 
 array[int] of TIME: weekends =
 	      if starting_day = 6 then [ 1 ] else [] endif ++
-	      [ t | t in TIME where (t + starting_day) mod 7 = 5 ]; 
+	      [ t | t in TIME where (t + starting_day) mod 7 = 5 ];
 array[int] of int: weekend_dur =
               if starting_day = 6 then [ 1 ] else [] endif ++
 	      [ 2 | t in TIME where (t + starting_day) mod 7 = 5 ];
@@ -48,38 +48,38 @@ set of int: PP = 0..card(PERSON);
 array[TIME] of var PP: pp;
 
 %constraint forall(t in TIME)(pp[t] > 0 -> start[pp[t]] <= t /\ start[pp[t]] + duration[pp[t]] > t);
-constraint forall(p in PERSON, t in TIME)(start[p] <= t /\ start[p] + duration[p] > t <-> pp[t] = p);  
+constraint forall(p in PERSON, t in TIME)(start[p] <= t /\ start[p] + duration[p] > t <-> pp[t] = p);
 
 
 
 %output ["weekends = \(weekends);\n"];
 
-%output [ show(p1) ++ " > " ++ show(p2) ++ "\n"  
+%output [ show(p1) ++ " > " ++ show(p2) ++ "\n"
 %       | p1, p2 in PERSON where rank[p1] > rank[p2] /\ fix(start[p1]) < fix(start[p2]) ];
 
 
 output
-       ["Day:   "] ++ 
-       [ ["M","T","W","T","F","S","S"][t mod 7 +1] ++ " " | t in 0..((fix(end) + starting_day) div 7 + 1) * 7 -1 ] 
+       ["Day:   "] ++
+       [ ["M","T","W","T","F","S","S"][t mod 7 +1] ++ " " | t in 0..((fix(end) + starting_day) div 7 + 1) * 7 -1 ]
        ++ ["\n"]
        ++
-       ["Time:  "] ++ 
-       [ if t div 10 >= 1 then show(t div 10) else " " endif ++ " " 
+       ["Time:  "] ++
+       [ if t div 10 >= 1 then show(t div 10) else " " endif ++ " "
        | t in -starting_day .. ((fix(end) + starting_day) div 7 + 1) * 7 -1 - starting_day ]
        ++ ["\n"]
        ++
-       ["       "] ++ 
-       [ if t >= 0 then show(t mod 10) else " " endif ++ " " 
+       ["       "] ++
+       [ if t >= 0 then show(t mod 10) else " " endif ++ " "
        | t in -starting_day .. ((fix(end) + starting_day) div 7 + 1) * 7 -1 - starting_day ]
        ++ ["\n"]
        ++
-       ["Visit: "] ++ 
-       [ if t < 0 then " "   
+       ["Visit: "] ++
+       [ if t < 0 then " "
          elseif fix(pp[t]) > 0 then show(pp[t])
          else "." endif ++
          if t < 0 then " "
          elseif fix(pp[t]) != fix(pp[t+1]) then "|"
-         elseif fix(pp[t]) > 0 then show(pp[t]) 
+         elseif fix(pp[t]) > 0 then show(pp[t])
          else "." endif
        | t in -starting_day .. ((fix(end) + starting_day) div 7 + 1) * 7 -1 - starting_day ]
        ++ ["\n\n"]

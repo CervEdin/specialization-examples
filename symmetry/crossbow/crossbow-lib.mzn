@@ -1,6 +1,6 @@
 int: n;
 set of int: N = 1..n;
-array[N,N] of var bool: t; 
+array[N,N] of var bool: t;
 constraint sum(i,j in N)(t[i,j]) = n;
 solve satisfy;
 
@@ -21,5 +21,5 @@ include "lex_lesseq.mzn";
 constraint rot_flip_sqr_sym(t);
 
 output [ if fix(t[i,j]) then "T" else "." endif ++
-         if j = n then "\n" else "" endif 
+         if j = n then "\n" else "" endif
        | i,j in N];

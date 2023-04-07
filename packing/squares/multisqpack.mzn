@@ -26,8 +26,8 @@ constraint forall(s in NSQ)(y[s] + size[s] <= height);
 % non overlap
 constraint forall(s1, s2 in NSQ where s1 < s2)
                  (x[s1] + size[s1] <= x[s2] \/
-                  x[s2] + size[s2] <= x[s1] \/  
-                  y[s1] + size[s1] <= y[s2] \/ 
+                  x[s2] + size[s2] <= x[s1] \/
+                  y[s1] + size[s1] <= y[s2] \/
                   y[s2] + size[s2] <= y[s1]);
 
 solve minimize area;

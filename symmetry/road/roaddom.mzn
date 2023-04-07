@@ -9,18 +9,18 @@ constraint alldifferent(road);
 
 constraint road[1] < road[n];
 
-var int: scoop = sum(i in 1..n-1) 
+var int: scoop = sum(i in 1..n-1)
    (coop[road[i], road[i+1]]);
 solve maximize scoop;
 
 output["road = \(road)\nscoop = \(scoop)"];
 
-constraint forall(i in 2..n-2) 
+constraint forall(i in 2..n-2)
                  (forall(j in i+1..n-1)
-                        (coop[road[i-1], road[i]] + 
-                         coop[road[j], road[j+1]] 
-                         >= 
-                         coop[road[i-1], road[j]] + 
+                        (coop[road[i-1], road[i]] +
+                         coop[road[j], road[j+1]]
+                         >=
+                         coop[road[i-1], road[j]] +
                          coop[road[i], road[j+1]]
                         )
                  );

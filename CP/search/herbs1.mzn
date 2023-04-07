@@ -9,11 +9,11 @@ var SEASONS: y;
 array[1..n div 2] of var ELEMENTS: oHerbs;
 array[1..n div 2] of var SEASONS: eHerbs;
 
-array[int,1..2] of ELEMENTS: eCompat = 
+array[int,1..2] of ELEMENTS: eCompat =
   [| Water, Wood | Water, Fire | Wood, Fire | Wood, Earth | Earth, Gold  |
      Fire, Earth | Fire, Gold  | Gold, Water| Gold, Wood  | Earth, Water |];
-     
-array[int,1..2] of (ELEMENTS union SEASONS): esCompat = 
+
+array[int,1..2] of (ELEMENTS union SEASONS): esCompat =
   [| Summer, Wood | Autumn, Wood | Winter, Wood |
      Wood, Summer | Wood, Autumn | Wood, Winter |
      Spring, Fire | Autumn, Fire | Winter, Fire |
@@ -23,8 +23,8 @@ array[int,1..2] of (ELEMENTS union SEASONS): esCompat =
      Spring, Water| Summer, Water| Autumn, Water|
      Water, Spring| Water, Summer| Water, Autumn|
      Spring, Earth| Summer, Earth| Autumn, Earth| Winter, Earth|
-     Earth, Spring| Earth, Summer| Earth, Autumn| Earth, Winter|]; 
-     
+     Earth, Spring| Earth, Summer| Earth, Autumn| Earth, Winter|];
+
 include "table.mzn";
 constraint forall(i in 1..(n div 2 - 1))(table([oHerbs[i],oHerbs[i+1]], eCompat));
 constraint forall(i in 1..(n div 2 - 1))(

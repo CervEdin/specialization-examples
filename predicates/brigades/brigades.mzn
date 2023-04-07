@@ -15,24 +15,24 @@ constraint forall(i in 1..nbrigade)(card(brigades[i]) = size);
 % all brigades different
 include "all_disjoint.mzn";
 constraint all_disjoint(brigades);
-  
+
 predicate alldifferent(array[int] of var BATTALION:b) =
           forall(i,j in index_set(b) where i < j)(b[i] != b[j]);
 
-predicate pattern(var set of BATTALION: brigade, 
-                  array[int] of set of BATTALION: t) = 
-   let { set of int: IND = 1..length(t); 
-         array[IND] of var BATTALION: b; } in 
+predicate pattern(var set of BATTALION: brigade,
+                  array[int] of set of BATTALION: t) =
+   let { set of int: IND = 1..length(t);
+         array[IND] of var BATTALION: b; } in
    forall(i in IND)(b[i] in t[i] /\ b[i] in brigade)
    /\ alldifferent(b);
 
 
 % 2A1B1C, 1A2B1C, 1A1B2C
-predicate elite(var set of BATTALION: brigade) = 
+predicate elite(var set of BATTALION: brigade) =
           pattern(brigade, [ARCHER, ARCHER, SHIELD, SHIELD])
        \/ pattern(brigade, [SWORD, SWORD, SWORD])
        \/ pattern(brigade, [ARCHER, SWORD, SWORD, SHIELD]);
- 
+
 
 constraint elite(brigades[1]);
 constraint elite(brigades[2]);
